@@ -50,7 +50,7 @@ export default function TexanSpyware() {
     };
   }, [typedText]);
 
-  if (!containsTexas) return <></>;
+  if (!containsTexas) return;
   return (
     <div id="texas-container">
       <button

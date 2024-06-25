@@ -1,9 +1,6 @@
-import './App.css';
-import TexanSpyware from './TexanSpyware';
 function App() {
   return (
-    <div>
-      <TexanSpyware/>
+    <div className="App">
     </div>
   );
 }
