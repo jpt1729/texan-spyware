@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    library: 'my-react-library',
+    library: 'texan-spyware',
     libraryTarget: 'umd',
   },
   module: {

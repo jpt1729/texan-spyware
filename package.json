@@ -1,6 +1,6 @@
 {
   "name": "texan-spyware",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -36,6 +36,7 @@
   },
   "description": "Texan spyware that pops up a Texas flag and plays the Texas anthem when the words 'texan' or 'texas' are typed. When trying to close it, the close button must be pressed multiple times while it jumps around the screen.",
   "main": "lib/index.js",
+  "module": "src/lib/index.js",
   "keywords": ["texas", "spyware"],
   "author": "jpt1729",
   "license": "ISC",
