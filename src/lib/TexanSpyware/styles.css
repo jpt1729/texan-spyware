@@ -1,16 +1,21 @@
-#texas-flag{
-    width: 100%;
-    height: 100%;
+#texas-flag {
+  width: 100%;
+  height: 100%;
 }
-#texas-container{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;    
+#texas-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
-#close-texas{
-    position: absolute;
-    left: 0;
-    top: 0;
+#close-texas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.moving {
+  position: absolute;
+  width: 100px;
+  height: 100px;
 }
