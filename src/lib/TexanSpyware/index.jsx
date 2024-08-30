@@ -5,20 +5,30 @@ import TexasFlag from "./texasflag.jpg";
 import Bucee from "./bucee.jpg";
 import HEB from "./HEB.svg";
 import TexasAnthem from "./texas-anthem.mp3";
+import BooSound from "./boo.mp3";
+
+import Boo from "./hate.png";
+
+import Boo2 from "./Hate2.jpg";
 
 import "./styles.css";
+const inTexas = async () => {
+  const res = await fetch("http://ip-api.com/json/");
+  const body = await res.json();
+  return body.region === "TX";
+};
 
 export default function TexanSpyware() {
   const [typedText, setTypedText] = useState("");
   const [containsTexas, setContainsTexas] = useState(false);
+  const [containsHate, setHate] = useState(false);
   const [numberOfClicks, setNumberOfClicks] = useState(0);
   const [images, setImages] = useState([
     { id: 1, type: "bucee" },
     { id: 2, type: "heb" },
   ]);
   const songRef = useRef(new Audio(TexasAnthem));
-  songRef.current.currentTime = 7;
-
+  const booRef = useRef(new Audio(BooSound));
   useEffect(() => {
     const handleKeyDown = (event) => {
       const newTypedText = typedText + event.key;
@@ -30,6 +40,7 @@ export default function TexanSpyware() {
         songRef.current.play();
         setContainsTexas(true);
 
+        inTexas();
         console.log(`
         ____
              !
@@ -45,7 +56,17 @@ export default function TexanSpyware() {
                \`.    ,
                  \\   ;
                    \`\`\’`);
+      } else if (
+        newTypedText.toLowerCase().includes("california") ||
+        newTypedText.toLowerCase().includes("georgia")
+      ) {
+        booRef.current.play();
+        setHate(true);
       }
+      navigator.geolocation.getCurrentPosition(
+        () => {},
+        () => {}
+      );
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -103,17 +124,24 @@ export default function TexanSpyware() {
       return () => {
         images.forEach((img) => {
           try {
-          const imgElement = document.getElementById(`img-${img.id}`);
-          clearInterval(imgElement.getAttribute("data-interval"));
-          } catch (error) {
-            
-          }
+            const imgElement = document.getElementById(`img-${img.id}`);
+            clearInterval(imgElement.getAttribute("data-interval"));
+          } catch (error) {}
         });
       };
     }
   }, [containsTexas, images]);
 
-  if (!containsTexas) return null;
+  if (!containsTexas && !containsHate) return null;
+  if (containsHate)
+    return (
+      <img
+        id="hate"
+        src={Math.random() > 0.5 ? Boo : Boo2}
+        alt="Thumbs Down"
+        style={{ position: "fixed", top: 0, left: 0 }}
+      />
+    );
   return (
     <div id="texas-container">
       <button
@@ -125,6 +153,10 @@ export default function TexanSpyware() {
             songRef.current.pause();
             songRef.current.currentTime = 7;
             setNumberOfClicks(0);
+            setImages([
+              { id: 1, type: "bucee" },
+              { id: 2, type: "heb" },
+            ]);
           } else {
             setImages((prevImages) => [
               ...prevImages,

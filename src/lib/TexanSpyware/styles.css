@@ -19,3 +19,14 @@
   width: 100px;
   height: 100px;
 }
+#hate{
+  animation: Appear 3s ease-in;
+}
+@keyframes Appear {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
